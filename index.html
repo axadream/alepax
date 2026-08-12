@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEX PINTEA // DIGITAL DEVELOPER</title>
+    <meta name="description" content="Under Development landing page for Alex Pintea - Digital Developer. Baking new digital experiences, immersive 3D environments, and automated AI workflows.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#020208',
+                            900: '#050714',
+                            800: '#0c1129',
+                        },
+                        cyan: {
+                            400: '#00e5ff',
+                            500: '#00d2ff',
+                            600: '#00b4db',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #020208 0%, #050714 50%, #0c0822 100%);
+        }
+        .font-mono-custom {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .stars-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .stars-small {
+            width: 1px; height: 1px;
+            background: transparent;
+            box-shadow:
+                15vw 10vh #fff, 35vw 25vh rgba(255,255,255,0.7), 75vw 15vh #fff, 90vw 30vh rgba(255,255,255,0.5),
+                5vw 45vh #fff, 22vw 60vh rgba(255,255,255,0.8), 58vw 50vh #fff, 82vw 68vh rgba(255,255,255,0.4),
+                12vw 80vh #fff, 45vw 75vh rgba(255,255,255,0.9), 70vw 88vh #fff, 92vw 85vh rgba(255,255,255,0.6),
+                30vw 92vh #fff, 62vw 12vh rgba(255,255,255,0.5), 88vw 52vh #fff, 48vw 38vh rgba(255,255,255,0.7),
+                2vw 18vh rgba(255,255,255,0.8), 51vw 82vh #fff, 78vw 42vh rgba(255,255,255,0.9), 27vw 52vh #fff;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+        .stars-medium {
+            width: 2px; height: 2px;
+            background: transparent;
+            box-shadow:
+                8vw 32vh rgba(0, 210, 255, 0.7), 28vw 15vh rgba(255,255,255,0.8), 64vw 28vh rgba(0, 210, 255, 0.5), 85vw 78vh #fff,
+                18vw 52vh #fff, 42vw 88vh rgba(0, 210, 255, 0.6), 52vw 22vh rgba(255,255,255,0.9), 72vw 58vh rgba(0, 210, 255, 0.8),
+                38vw 62vh rgba(255,255,255,0.7), 95vw 12vh #fff, 80vw 92vh rgba(255,255,255,0.5), 55vw 70vh rgba(0, 210, 255, 0.4);
+            animation: twinkle 6s ease-in-out infinite alternate 1.5s;
+        }
+        .stars-large {
+            width: 3px; height: 3px;
+            background: transparent;
+            box-shadow:
+                25vw 48vh rgba(0, 210, 255, 0.5), 70vw 32vh rgba(0, 210, 255, 0.6),
+                50vw 80vh rgba(255, 255, 255, 0.8), 88vw 20vh rgba(0, 210, 255, 0.4),
+                12vw 72vh rgba(255, 255, 255, 0.6), 62vw 62vh rgba(255, 255, 255, 0.7);
+            animation: twinkle 8s ease-in-out infinite alternate 3s;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1.0; }
+        }
+        .glass-panel {
+            background: rgba(9, 13, 22, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+            will-change: transform, border-color, box-shadow;
+        }
+        .glass-panel:hover {
+            transform: scale(1.015) translateY(-2px);
+            border-color: rgba(0, 210, 255, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(0, 210, 255, 0.1);
+        }
+        .cosmic-glow {
+            position: absolute;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.08) 0%, rgba(12, 8, 34, 0) 70%);
+            top: -10vw; right: -10vw;
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(50px);
+        }
+        @keyframes flash-brackets {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1.0; }
+        }
+        .animate-brackets {
+            animation: flash-brackets 2s ease-in-out infinite;
+        }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* AI Roadmap Modal */
+        .ai-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+        .ai-modal-backdrop.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .ai-modal {
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.96);
+            width: min(920px, calc(100vw - 24px));
+            height: min(88vh, 900px);
+            background: #f8fafc;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .ai-modal.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .ai-modal-header {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        .ai-modal-header span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .ai-modal-close {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .ai-modal-close:hover {
+            color: #fff;
+            background: #334155;
+        }
+        .ai-modal iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: #f8fafc;
+        }
+        body.ai-modal-open {
+            overflow: hidden;
+        }
+        @media (max-width: 480px) {
+            .ai-modal {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+            }
+            .ai-modal.open {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-cyan-500/30 selection:text-white">
+
+    <div class="stars-container">
+        <div class="stars-small absolute inset-0"></div>
+        <div class="stars-medium absolute inset-0"></div>
+        <div class="stars-large absolute inset-0"></div>
+        <div class="cosmic-glow"></div>
+    </div>
+
+    <canvas id="cosmic-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <header class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center z-10 relative">
+        <div class="flex items-center space-x-2.5">
+            <span class="h-2 w-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_#00d2ff]"></span>
+            <span class="font-mono-custom text-xs tracking-[0.25em] text-slate-400 uppercase">ALEP&Lambda;X // SYSTEM V1.0</span>
+        </div>
+        <div class="text-xs font-mono-custom text-slate-500 tracking-widest">
+            [ EST_2026 ]
+        </div>
+    </header>
+
+    <main class="w-full max-w-7xl mx-auto px-6 py-4 flex-grow flex flex-col justify-center z-10 relative">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full auto-rows-auto">
+
+            <!-- Hero -->
+            <section id="hero-panel" class="glass-panel col-span-1 md:col-span-3 lg:col-span-3 rounded-3xl p-8 flex flex-col justify-between min-h-[320px]">
+                <div class="space-y-4">
+                    <span class="text-xs font-mono-custom text-cyan-400 tracking-[0.15em] uppercase bg-cyan-500/10 px-3 py-1.5 rounded-full border border-cyan-500/20 inline-block shadow-[0_0_15px_rgba(0,210,255,0.05)]">
+                        Digital Developer & Engineer
+                    </span>
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-wide text-white leading-none">
+                        ALEX PINTEA
+                    </h1>
+                    <p class="text-slate-300 font-mono-custom text-sm md:text-base max-w-2xl tracking-wide leading-relaxed">
+                        Crafting high-fidelity interactive software, procedural assets, and scalable technical pipelines.
+                    </p>
+                    <!-- CTA: Explore AI Learning Path -->
+                    <div class="pt-2">
+                        <button type="button" id="openAiRoadmap"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold tracking-wide
+                                   bg-cyan-500/15 text-cyan-300 border border-cyan-500/30
+                                   hover:bg-cyan-500/25 hover:border-cyan-400/50 hover:text-cyan-200
+                                   transition duration-300 shadow-[0_0_20px_rgba(0,210,255,0.08)]">
+                            <span>Explore AI Learning Path</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="status-tracker" class="mt-8 bg-black/50 border border-white/5 rounded-xl p-4 font-mono-custom text-xs md:text-sm text-slate-300 flex items-center space-x-3 backdrop-blur-md">
+                    <div class="flex space-x-1.5 flex-shrink-0">
+                        <span class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/30"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/30"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/30 shadow-[0_0_8px_rgba(34,197,94,0.3)]"></span>
+                    </div>
+                    <div class="flex-grow overflow-x-auto whitespace-nowrap scrollbar-none">
+                        <span class="text-cyan-500/70 select-none">$</span>
+                        <span class="text-slate-200">
+                            <span class="text-cyan-500 font-bold animate-brackets">[</span> Status: Baking New Digital Experiences. Full portfolio launching Summer 2026. <span class="text-cyan-500 font-bold animate-brackets">]</span>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Connect -->
+            <section id="connection-panel" class="glass-panel col-span-1 md:col-span-1 lg:col-span-1 rounded-3xl p-8 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-white mb-2 tracking-wide">Connect</h2>
+                    <p class="text-xs text-slate-400 font-mono-custom tracking-wider">Initialize secure handshake protocol.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                    <a id="github-link" href="https://github.com/axadream" target="_blank" rel="noopener noreferrer"
+                       class="flex flex-col items-center justify-center p-4 bg-slate-950/50 hover:bg-slate-950 border border-white/5 hover:border-cyan-500/30 rounded-2xl transition duration-300 group shadow-inner">
+                        <svg class="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition duration-300 filter group-hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-xs font-mono-custom text-slate-400 group-hover:text-cyan-400 mt-2 transition duration-300">GitHub</span>
+                    </a>
+                    <a id="linkedin-link" href="https://www.linkedin.com/in/alex-pintea/" target="_blank" rel="noopener noreferrer"
+                       class="flex flex-col items-center justify-center p-4 bg-slate-950/50 hover:bg-slate-950 border border-white/5 hover:border-cyan-500/30 rounded-2xl transition duration-300 group shadow-inner">
+                        <svg class="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition duration-300 filter group-hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-xs font-mono-custom text-slate-400 group-hover:text-cyan-400 mt-2 transition duration-300">LinkedIn</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Manifesto -->
+            <section id="manifesto-panel" class="glass-panel col-span-1 md:col-span-2 lg:col-span-2 rounded-3xl p-8">
+                <h2 class="text-xs font-mono-custom text-cyan-400 tracking-[0.2em] uppercase mb-4 flex items-center">
+                    <span class="inline-block w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 shadow-[0_0_8px_#00d2ff]"></span>
+                    Professional Manifesto
+                </h2>
+                <div class="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed tracking-wide">
+                    <p>
+                        Engineering digital products demands a convergence of discipline, clarity, and visual precision. I specialize in building robust software structures anchored by <strong class="text-white border-b border-cyan-500/30 pb-0.5 font-semibold">clean, maintainable code</strong> and high-performance design architectures.
+                    </p>
+                    <p>
+                        My work bridges code and visual media, deploying <strong class="text-white border-b border-cyan-500/30 pb-0.5 font-semibold">immersive 3D environments</strong> and <strong class="text-white border-b border-cyan-500/30 pb-0.5 font-semibold">procedural modeling</strong> to craft experiences that feel both physical and digital.
+                    </p>
+                    <p>
+                        By structuring <strong class="text-white border-b border-cyan-500/30 pb-0.5 font-semibold">automated, AI-driven workflows</strong>, I build systems that shorten the gap between conceptual design and production deployment.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section id="tech-stack-panel" class="glass-panel col-span-1 md:col-span-2 lg:col-span-2 rounded-3xl p-8 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xs font-mono-custom text-cyan-400 tracking-[0.2em] uppercase mb-4 flex items-center">
+                        <span class="inline-block w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2 shadow-[0_0_8px_#00d2ff]"></span>
+                        Tech Stack Ledger
+                    </h2>
+                    <p class="text-slate-400 text-xs md:text-sm mb-6 tracking-wide">
+                        Primary modules, languages, and graphics runtimes integrated into active developments.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">01 / LANG</span>
+                        <span class="text-sm font-bold text-white tracking-wide">JavaScript</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">02 / LANG</span>
+                        <span class="text-sm font-bold text-white tracking-wide">TypeScript</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">03 / WEB 3D</span>
+                        <span class="text-sm font-bold text-cyan-400 tracking-wide">Three.js</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">04 / CORE API</span>
+                        <span class="text-sm font-bold text-cyan-400 tracking-wide">WebGL</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">05 / ASSETS</span>
+                        <span class="text-sm font-bold text-white tracking-wide">Blender</span>
+                    </div>
+                    <div class="p-3 bg-slate-950/30 border border-white/5 rounded-xl flex flex-col justify-between min-h-[70px] transition duration-300 hover:border-cyan-500/10">
+                        <span class="text-[10px] font-mono-custom text-slate-500 tracking-wider">06 / PIPELINE</span>
+                        <span class="text-sm font-bold text-white tracking-wide">Python</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="w-full max-w-7xl mx-auto px-6 py-8 border-t border-white/5 mt-12 flex flex-col sm:flex-row justify-between items-center text-xs font-mono-custom text-slate-500 z-10 relative">
+        <div>
+            &copy; 2026 ALEX PINTEA. ALL RIGHTS RESERVED.
+        </div>
+        <div class="mt-2 sm:mt-0 flex space-x-6 tracking-wider">
+            <span>LOC: 44.4268° N, 26.1025° E</span>
+            <span class="text-cyan-500/70">SYSTEM: ONLINE</span>
+        </div>
+    </footer>
+
+    <!-- AI Roadmap Modal -->
+    <div class="ai-modal-backdrop" id="aiModalBackdrop" aria-hidden="true"></div>
+    <div class="ai-modal" id="aiModal" role="dialog" aria-modal="true" aria-labelledby="aiModalTitle" hidden>
+        <div class="ai-modal-header">
+            <span id="aiModalTitle">Zero to Hero AI Roadmap</span>
+            <button type="button" class="ai-modal-close" id="closeAiModal" aria-label="Close">✕</button>
+        </div>
+        <iframe id="aiRoadmapFrame" src="tracker.html" title="AI Learning Path Tracker" loading="lazy"></iframe>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, planetGroup;
+        let targetMouseX = 0, targetMouseY = 0;
+        let currentMouseX = 0, currentMouseY = 0;
+
+        function initThree() {
+            const canvas = document.getElementById('cosmic-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = 6;
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            planetGroup = new THREE.Group();
+            scene.add(planetGroup);
+
+            const innerGeo = new THREE.IcosahedronGeometry(2.0, 2);
+            const innerMat = new THREE.MeshPhongMaterial({ color: 0x050a1e, flatShading: true, shininess: 25, transparent: true, opacity: 0.85 });
+            planetGroup.add(new THREE.Mesh(innerGeo, innerMat));
+
+            const outerGeo = new THREE.IcosahedronGeometry(2.03, 2);
+            const outerMat = new THREE.MeshBasicMaterial({ color: 0x00d2ff, wireframe: true, transparent: true, opacity: 0.35 });
+            planetGroup.add(new THREE.Mesh(outerGeo, outerMat));
+
+            scene.add(new THREE.AmbientLight(0x0a1033, 1.8));
+            const dirLight = new THREE.DirectionalLight(0x00d2ff, 3.0);
+            dirLight.position.set(5, 3, 5);
+            scene.add(dirLight);
+            const pointLight = new THREE.PointLight(0x9d4edd, 1.5, 15);
+            pointLight.position.set(-6, -3, -3);
+            scene.add(pointLight);
+
+            resizeHandler();
+            window.addEventListener('resize', resizeHandler);
+            window.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseleave', mouseLeaveHandler);
+            animate();
+        }
+
+        function resizeHandler() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            const w = window.innerWidth;
+            if (w >= 1024) {
+                planetGroup.position.set(2.0, 0.2, 0);
+                planetGroup.scale.set(1.0, 1.0, 1.0);
+            } else if (w >= 768) {
+                planetGroup.position.set(1.4, -0.2, 0);
+                planetGroup.scale.set(0.8, 0.8, 0.8);
+            } else {
+                planetGroup.position.set(0, -1.3, 0);
+                planetGroup.scale.set(0.65, 0.65, 0.65);
+            }
+        }
+
+        function mouseMoveHandler(event) {
+            targetMouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            targetMouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+        function mouseLeaveHandler() {
+            targetMouseX = 0;
+            targetMouseY = 0;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = Date.now() * 0.0003;
+            currentMouseX += (targetMouseX - currentMouseX) * 0.05;
+            currentMouseY += (targetMouseY - currentMouseY) * 0.05;
+            planetGroup.rotation.y = time + currentMouseX * 0.45;
+            planetGroup.rotation.x = currentMouseY * 0.45;
+            planetGroup.position.y += Math.sin(time * 2) * 0.0004;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('DOMContentLoaded', initThree);
+
+        // AI Roadmap Modal
+        (function () {
+            const openBtn = document.getElementById('openAiRoadmap');
+            const backdrop = document.getElementById('aiModalBackdrop');
+            const modal = document.getElementById('aiModal');
+            const closeBtn = document.getElementById('closeAiModal');
+
+            function openModal() {
+                modal.hidden = false;
+                requestAnimationFrame(function () {
+                    backdrop.classList.add('open');
+                    modal.classList.add('open');
+                });
+                document.body.classList.add('ai-modal-open');
+                backdrop.setAttribute('aria-hidden', 'false');
+                closeBtn.focus();
+            }
+            function closeModal() {
+                backdrop.classList.remove('open');
+                modal.classList.remove('open');
+                document.body.classList.remove('ai-modal-open');
+                backdrop.setAttribute('aria-hidden', 'true');
+                setTimeout(function () { modal.hidden = true; }, 250);
+                openBtn && openBtn.focus();
+            }
+
+            openBtn && openBtn.addEventListener('click', openModal);
+            closeBtn && closeBtn.addEventListener('click', closeModal);
+            backdrop && backdrop.addEventListener('click', closeModal);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+        })();
+    </script>
+</body>
+</html>

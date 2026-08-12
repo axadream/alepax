@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ultimate "Zero to Hero" AI Roadmap — Interactive Edition</title>
+<style>
+  :root {
+    --primary: #0f172a;
+    --accent: #0ea5e9;
+    --teal: #14b8a6;
+    --purple: #8b5cf6;
+    --green: #22c55e;
+    --muted: #64748b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --dark: #1e293b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 40%);
+    color: var(--primary);
+    line-height: 1.5;
+    padding: 16px 12px 64px;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: #e0f2fe;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--dark);
+    border-radius: 14px;
+    padding: 14px 16px 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  .progress-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .progress-pct {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--teal);
+    transition: color 0.3s;
+  }
+  .progress-pct.done { color: #4ade80; }
+  .progress-bar-bg {
+    height: 10px;
+    background: #334155;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--teal), #4ade80);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .progress-actions { display: flex; gap: 8px; margin-top: 10px; }
+  .progress-actions button {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #475569;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+  }
+  .progress-actions button:hover {
+    background: #334155;
+    color: #e2e8f0;
+  }
+  h2 { font-size: 1.1rem; margin: 24px 0 10px; }
+  .method {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .method ol { padding-left: 18px; }
+  .method li { margin-bottom: 6px; font-size: 0.88rem; }
+  .phase {
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .phase.p1 { background: var(--accent); }
+  .phase.p2 { background: var(--purple); }
+  .phase.p3 { background: var(--teal); }
+  .phase.p4 { background: var(--green); }
+  .phase span {
+    font-size: 0.68rem;
+    background: rgba(255,255,255,0.25);
+    padding: 3px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .card.checked {
+    border-color: var(--teal);
+    background: #f0fdfa;
+  }
+  .card.checked h3 { color: #0f766e; }
+  .check-wrap { flex-shrink: 0; padding-top: 2px; }
+  .check-wrap input[type="checkbox"] {
+    width: 20px; height: 20px;
+    accent-color: var(--teal);
+    cursor: pointer;
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .card h3 { font-size: 0.92rem; margin-bottom: 2px; line-height: 1.3; }
+  .meta { font-size: 0.72rem; color: var(--muted); margin-bottom: 6px; }
+  .card p { font-size: 0.84rem; margin-bottom: 8px; }
+  .links a {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 10px;
+    margin-bottom: 4px;
+  }
+  .links a:hover { text-decoration: underline; }
+  .core {
+    background: var(--dark);
+    color: #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 10px 0 0;
+    font-size: 0.82rem;
+  }
+  .core ol { padding-left: 18px; margin-top: 8px; }
+  .order {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 0.84rem;
+  }
+  .order ol { padding-left: 18px; }
+  .order li { margin-bottom: 4px; }
+  .propose {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    margin: 28px 0 20px;
+  }
+  .propose h2 { margin: 0 0 6px; font-size: 1.1rem; }
+  .propose .form-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .form-group { margin-bottom: 12px; }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--primary);
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+  }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .form-row .form-group {
+    flex: 1;
+    min-width: 140px;
+  }
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .btn-submit {
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover { background: #0d9488; }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .form-success {
+    display: none;
+    font-size: 0.88rem;
+    color: #0f766e;
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 12px;
+  }
+  .form-success.visible { display: block; }
+  .form-error {
+    display: none;
+    font-size: 0.88rem;
+    color: #b45309;
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 12px;
+  }
+  .form-error.visible { display: block; }
+  footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .celebrate { animation: pulse 0.6s ease; }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+  @media (max-width: 480px) {
+    body { padding: 12px 10px 56px; }
+    h1 { font-size: 1.4rem; }
+    .progress-wrap { padding: 12px 12px 10px; border-radius: 12px; }
+    .phase { font-size: 0.85rem; padding: 9px 10px; }
+    .card { padding: 11px 12px; gap: 8px; }
+    .card h3 { font-size: 0.88rem; }
+    .form-row { flex-direction: column; gap: 0; }
+    .form-row .form-group { min-width: 0; }
+  }
+  @media (min-width: 640px) {
+    body { padding: 24px 16px 80px; }
+    h1 { font-size: 1.75rem; }
+    .subtitle { font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="badge">Extended Master Curriculum · Interactive Edition</div>
+  <h1>The Ultimate "Zero to Hero" AI Roadmap</h1>
+  <p class="subtitle">Math Foundations · Paper Practice · Micrograd Dissection · LLM Architecture<br>
+  Check off topics as you complete them — progress is saved in your browser.</p>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-header">
+      <span class="progress-label">Progress Tracker</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-meta">
+      <span id="progressCount">0 of 16 completed</span>
+      <span id="progressHint">Mark topics below as you finish them</span>
+    </div>
+    <div class="progress-actions">
+      <button type="button" id="btnReset" title="Clear all checkboxes">Reset progress</button>
+    </div>
+  </div>
+
+  <div class="method">
+    <h2 style="margin-top:0">Learning Methodology</h2>
+    <p style="font-size:0.9rem;margin-bottom:10px">To build deep, lasting intuition without treating PyTorch as a black box, follow this four-stage progression:</p>
+    <ol>
+      <li><strong>Geometric Intuition</strong> — Understand matrices and calculus as physical space transformations.</li>
+      <li><strong>"By Hand" Calculation</strong> — Trace matrix multiplications and activation passes manually on paper.</li>
+      <li><strong>Visual Architecture</strong> — Study color-coded diagrams of Self-Attention and Transformer blocks.</li>
+      <li><strong>Line-by-Line Mechanics</strong> — Build Micrograd and GPT from scratch in raw Python.</li>
+    </ol>
+  </div>
+
+  <div class="phase p1">
+    Phase 1 · Visual &amp; Geometric Math Foundations
+    <span>Zero Code</span>
+  </div>
+
+  <div class="card" data-id="p1-linear-algebra">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-linear-algebra" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>3Blue1Brown: Essence of Linear Algebra</h3>
+      <div class="meta">By Grant Sanderson · YouTube Series (16 videos)</div>
+      <p>Shows how matrices transform, rotate, and stretch 2D/3D space. Teaches vectors, dot products, determinants, eigenvectors visually. The single best free linear-algebra intuition resource.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank" rel="noopener">Official playlist →</a>
+        <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs" target="_blank" rel="noopener">Start: Vectors (Ch.1) →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p1-calculus">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-calculus" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>3Blue1Brown: Essence of Calculus</h3>
+      <div class="meta">By Grant Sanderson · YouTube Series (12 videos)</div>
+      <p>Explains derivatives, rates of change, and the chain rule geometrically. Crucial for understanding how backpropagation updates weights.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" target="_blank" rel="noopener">Official playlist →</a>
+        <a href="https://www.youtube.com/watch?v=WUvTyaaNkzM" target="_blank" rel="noopener">Start: The essence of calculus →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p1-statquest">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-statquest" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>StatQuest with Josh Starmer</h3>
+      <div class="meta">YouTube Channel · Statistics &amp; ML foundations</div>
+      <p>Step-by-step visual breakdowns of probability, distributions, Maximum Likelihood Estimation, and fundamental ML algorithms.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/@statquest" target="_blank" rel="noopener">Channel →</a>
+        <a href="https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" target="_blank" rel="noopener">ML playlist →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p1-maths4ml">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-maths4ml" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Maths4ML (Interactive Platform)</h3>
+      <div class="meta">Free &amp; Open · Interactive web platform</div>
+      <p>Interactive plotting and step-by-step worked math derivations bridging raw equations with ML algorithms (PCA, Gradient Descent, Transformers).</p>
+      <div class="links">
+        <a href="https://maths4ml.com/" target="_blank" rel="noopener">Open Maths4ML →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p2">
+    Phase 2 · "By Hand" Step-by-Step Practice
+    <span>Arithmetic Grids</span>
+  </div>
+
+  <div class="card" data-id="p2-ai-by-hand">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-ai-by-hand" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>AI by Hand ✍️ — Calculating AI by Hand series (Prof. Tom Yeh)</h3>
+      <div class="meta">Start here: Matrix Multiplication → MLP → Backprop · Free walkthroughs + paid workbooks</div>
+      <p>Prof. Tom Yeh (CU Boulder) created a unique system of hand-drawn arithmetic grids so you can trace every matrix multiply, activation, and gradient on paper. This is the core of Phase 2.</p>
+      <div class="links">
+        <a href="https://www.byhand.ai/p/library-series-math-calc" target="_blank" rel="noopener">Free calculation library (start here) →</a>
+        <a href="https://www.byhand.ai/p/4-can-you-multiply-these-matrices" target="_blank" rel="noopener">1. Matrix Multiplication by Hand →</a>
+        <a href="https://www.byhand.ai/" target="_blank" rel="noopener">Main site →</a>
+        <a href="https://www.youtube.com/@ai-by-hand" target="_blank" rel="noopener">YouTube channel →</a>
+        <a href="https://www.youtube.com/playlist?list=PL0cq-CiC5QhuyQQ-Qi5Qr5e5Rbzrn7beY" target="_blank" rel="noopener">Workbook playlist →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p2-pencil-paper">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-pencil-paper" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Free Alternative — Pencil-and-Paper Neural Networks</h3>
+      <div class="meta">Undergraduate lab exercise (open access)</div>
+      <p>A published laboratory exercise in which students construct, train and test simple artificial neural networks entirely by hand on paper. Completely free PDF.</p>
+      <div class="links">
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4640478/" target="_blank" rel="noopener">Open-access paper + exercises →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p2-wandb-math4ml">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-wandb-math4ml" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Weights &amp; Biases Math4ML Exercises</h3>
+      <div class="meta">GitHub + Colab · Linear Algebra focused</div>
+      <p>Interactive Jupyter notebooks with auto-grader for linear-algebra exercises oriented toward ML. Excellent free practice complement.</p>
+      <div class="links">
+        <a href="https://github.com/wandb/edu/tree/main/math-for-ml" target="_blank" rel="noopener">GitHub repo →</a>
+        <a href="https://www.youtube.com/watch?v=99QfjbX6uxg" target="_blank" rel="noopener">Intro video →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p3">
+    Phase 3 · Visual Neural Networks &amp; Transformers
+    <span>Visual Mechanics</span>
+  </div>
+
+  <div class="card" data-id="p3-3b1b-nn">
+    <div class="check-wrap"><input type="checkbox" id="cb-p3-3b1b-nn" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>3Blue1Brown: Neural Networks (Deep Learning series)</h3>
+      <div class="meta">YouTube Series · Chapters 1–7</div>
+      <p>Animated visualization of multi-layer perceptrons, cost functions, gradient descent, backpropagation, and later chapters on Transformers and Attention.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank" rel="noopener">Full playlist →</a>
+        <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">Start: But what is a neural network? →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p3-tf-playground">
+    <div class="check-wrap"><input type="checkbox" id="cb-p3-tf-playground" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>TensorFlow Playground</h3>
+      <div class="meta">Browser sandbox · No code required</div>
+      <p>Train neural networks directly in your browser. Adjust hidden layers, learning rates and activation functions while observing decision boundaries update live.</p>
+      <div class="links">
+        <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">Open Playground →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p3-illustrated-transformer">
+    <div class="check-wrap"><input type="checkbox" id="cb-p3-illustrated-transformer" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Jay Alammar: The Illustrated Transformer</h3>
+      <div class="meta">Visual blog post (gold-standard)</div>
+      <p>The classic color-coded visual guide explaining Embeddings, Self-Attention, Query/Key/Value vectors, and positional encoding.</p>
+      <div class="links">
+        <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">Read The Illustrated Transformer →</a>
+        <a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noopener">Also: Illustrated GPT-2 →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p4">
+    Phase 4 · Code Mechanics: Karpathy's "Zero to Hero"
+    <span>Python &amp; PyTorch</span>
+  </div>
+
+  <div class="card" data-id="p4-karpathy-series">
+    <div class="check-wrap"><input type="checkbox" id="cb-p4-karpathy-series" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Andrej Karpathy: Neural Networks — Zero to Hero (full series overview)</h3>
+      <div class="meta">Former Director of AI at Tesla &amp; OpenAI founding team · Full free course</div>
+      <p>The definitive line-by-line series. You will build a scalar autograd engine, character-level language models, and a complete GPT from scratch.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank" rel="noopener">Official playlist →</a>
+        <a href="https://github.com/karpathy/nn-zero-to-hero" target="_blank" rel="noopener">GitHub notebooks →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p4-micrograd">
+    <div class="check-wrap"><input type="checkbox" id="cb-p4-micrograd" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Lecture 1: Micrograd (Line-by-Line Autograd)</h3>
+      <div class="meta">KEY FOUNDATIONAL MILESTONE · Pure Python</div>
+      <p>Micrograd is Karpathy’s scalar autograd engine (~100–150 lines of pure Python). Dissecting it bridges the paper math from “AI by Hand” directly into production software engines.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener">Watch Lecture 1 (2h 25m) →</a>
+        <a href="https://github.com/karpathy/micrograd" target="_blank" rel="noopener">micrograd GitHub →</a>
+      </div>
+      <div class="core">
+        <strong>The 5 core mechanics dissected line-by-line:</strong>
+        <ol>
+          <li>The Value class — wraps numbers to track scalar output (data) and derivative (grad).</li>
+          <li>Operator Overloading — overrides __add__, __mul__, __pow__ to build a computational graph.</li>
+          <li>Local Derivatives — explicit calculus derivatives for elementary ops.</li>
+          <li>Topological Sort &amp; Backprop — reverse-order Chain Rule via .backward().</li>
+          <li>Building Neurons, Layers &amp; MLP — weighted-sum neurons and multi-layer perceptrons.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p4-makemore">
+    <div class="check-wrap"><input type="checkbox" id="cb-p4-makemore" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Lectures 2–5: Makemore Series (Language Modeling)</h3>
+      <div class="meta">Build character-level language models</div>
+      <p>Progress through Bigrams → Multilayer Perceptrons (MLP) → Batch Normalization → WaveNet-style models.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/watch?v=PaCmpygFfXo&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=2" target="_blank" rel="noopener">Start Lecture 2 →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p4-build-gpt">
+    <div class="check-wrap"><input type="checkbox" id="cb-p4-build-gpt" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Lecture 6: Let’s build GPT</h3>
+      <div class="meta">Transformer Architecture</div>
+      <p>Construct a complete generative Transformer model matching the original GPT-2 paper from scratch in PyTorch.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener">Watch Lecture 6 →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-id="p4-tokenizer-nanogpt">
+    <div class="check-wrap"><input type="checkbox" id="cb-p4-tokenizer-nanogpt" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Tokenizer + NanoGPT / GPT-2 reproduction</h3>
+      <div class="meta">Optimization &amp; production considerations</div>
+      <p>Learn tokenization (tiktoken / minBPE) and high-performance PyTorch optimizations. Also covers reproducing GPT-2 (124M).</p>
+      <div class="links">
+        <a href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank" rel="noopener">Let’s build the GPT Tokenizer →</a>
+        <a href="https://www.youtube.com/watch?v=l8pRSuU81PU" target="_blank" rel="noopener">Reproduce GPT-2 (124M) →</a>
+        <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener">nanoGPT GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Recommended Study Order (with rough time estimates)</h2>
+  <div class="order">
+    <ol>
+      <li>3Blue1Brown Linear Algebra (Essence) — ~3–4 h</li>
+      <li>3Blue1Brown Calculus (Essence) — ~3 h</li>
+      <li>StatQuest core ML/stats videos — 4–6 h</li>
+      <li>AI by Hand: Matrix Multiplication → MLP → Backprop walkthroughs — 6–10 h of paper work</li>
+      <li>3Blue1Brown Neural Networks chapters 1–4 — ~1.5 h</li>
+      <li>TensorFlow Playground experimentation — 1–2 h</li>
+      <li>Jay Alammar Illustrated Transformer — 1–2 h (read slowly, redraw diagrams)</li>
+      <li>Karpathy Lecture 1 (Micrograd) — watch + re-implement (8–12 h total)</li>
+      <li>Makemore series (Lectures 2–5) — 10–15 h</li>
+      <li>Let’s build GPT + Tokenizer + NanoGPT — 15–25 h</li>
+    </ol>
+  </div>
+
+  <div class="propose" id="proposeSection">
+    <h2>Propose a Resource / Suggest Sequence Change</h2>
+    <p class="form-desc">Found a better resource or a smarter order? Share it below.</p>
+    <form id="proposeForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="propName">Name</label>
+          <input type="text" id="propName" name="name" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="propEmail">Email Address</label>
+          <input type="email" id="propEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="propDetails">Resource / Sequence Proposal Details</label>
+        <textarea id="propDetails" name="details" placeholder="Describe the resource, link, or sequence change..." required></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" id="btnSubmit">Submit proposal</button>
+      </div>
+      <div class="form-success" id="formSuccess" role="status">
+        Thanks — your proposal was recorded. I’ll review it soon.
+      </div>
+      <div class="form-error" id="formError" role="alert">
+        Something went wrong. Please try again later.
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    All primary resources listed are free. Paid workbooks from Prof. Tom Yeh are optional upgrades.<br>
+    Progress is stored locally in your browser (localStorage).
+  </footer>
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'zeroToHeroAI_progress_v1';
+  const checkboxes = document.querySelectorAll('.card input[type="checkbox"]');
+  const total = checkboxes.length;
+
+  const pctEl = document.getElementById('progressPct');
+  const fillEl = document.getElementById('progressFill');
+  const countEl = document.getElementById('progressCount');
+  const hintEl = document.getElementById('progressHint');
+  const wrapEl = document.getElementById('progressWrap');
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return {};
+      return JSON.parse(raw);
+    } catch (e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function getState() {
+    const state = {};
+    checkboxes.forEach(cb => {
+      state[cb.closest('.card').dataset.id] = cb.checked;
+    });
+    return state;
+  }
+  function applyState(state) {
+    checkboxes.forEach(cb => {
+      const id = cb.closest('.card').dataset.id;
+      cb.checked = !!state[id];
+      cb.closest('.card').classList.toggle('checked', cb.checked);
+    });
+  }
+  function updateProgress() {
+    let done = 0;
+    checkboxes.forEach(cb => {
+      if (cb.checked) done++;
+      cb.closest('.card').classList.toggle('checked', cb.checked);
+    });
+    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+    pctEl.textContent = pct + '%';
+    fillEl.style.width = pct + '%';
+    countEl.textContent = done + ' of ' + total + ' completed';
+    if (pct === 100) {
+      pctEl.classList.add('done');
+      hintEl.textContent = '🎉 Roadmap complete — you are a hero!';
+      wrapEl.classList.add('celebrate');
+      setTimeout(() => wrapEl.classList.remove('celebrate'), 600);
+    } else if (pct === 0) {
+      pctEl.classList.remove('done');
+      hintEl.textContent = 'Mark topics below as you finish them';
+    } else {
+      pctEl.classList.remove('done');
+      hintEl.textContent = 'Keep going — ' + (total - done) + ' remaining';
+    }
+    saveState(getState());
+  }
+
+  applyState(loadState());
+  updateProgress();
+  checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+  document.getElementById('btnReset').addEventListener('click', function () {
+    if (!confirm('Clear all progress? This cannot be undone.')) return;
+    checkboxes.forEach(cb => { cb.checked = false; });
+    updateProgress();
+  });
+
+  // ── Form → Google Sheet (or local fallback) ──
+  // PASTE your Google Apps Script Web App URL here:
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBcr_awZVpiWxhOyKxF-3bHP8VSQaGFcshoW9wlpqaZKHRLHNXvYd_xo-o-2O4cCTL/exec';
+
+  const form = document.getElementById('proposeForm');
+  const successEl = document.getElementById('formSuccess');
+  const errorEl = document.getElementById('formError');
+  const btnSubmit = document.getElementById('btnSubmit');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    successEl.classList.remove('visible');
+    errorEl.classList.remove('visible');
+
+    const name = document.getElementById('propName').value.trim();
+    const email = document.getElementById('propEmail').value.trim();
+    const details = document.getElementById('propDetails').value.trim();
+    if (!name || !email || !details) {
+      form.reportValidity();
+      return;
+    }
+
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = 'Sending…';
+
+    const payload = { name, email, details };
+
+    // Always keep a local copy as backup
+    try {
+      const prev = JSON.parse(localStorage.getItem('zeroToHeroAI_proposals') || '[]');
+      prev.push({ ...payload, at: new Date().toISOString() });
+      localStorage.setItem('zeroToHeroAI_proposals', JSON.stringify(prev.slice(-30)));
+    } catch (err) {}
+
+    // If no Google URL is set, just show success (local only)
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR')) {
+      form.reset();
+      successEl.classList.add('visible');
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Submit proposal';
+      setTimeout(() => successEl.classList.remove('visible'), 5000);
+      return;
+    }
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Apps Script web apps often need this for simple POST
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+      // With no-cors we cannot read the response; assume success if no throw
+      form.reset();
+      successEl.classList.add('visible');
+      setTimeout(() => successEl.classList.remove('visible'), 5000);
+    } catch (err) {
+      errorEl.classList.add('visible');
+      setTimeout(() => errorEl.classList.remove('visible'), 6000);
+    } finally {
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = 'Submit proposal';
+    }
+  });
+})();
+</script>
+</body>
+</html>
