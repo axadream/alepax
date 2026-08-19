@@ -334,7 +334,7 @@
 <div class="container">
   <div class="badge">Extended Master Curriculum · Interactive Edition</div>
   <h1>The Ultimate "Zero to Hero" AI Roadmap</h1>
-  <p class="subtitle">Math Foundations · Paper Practice · Micrograd Dissection · LLM Architecture<br>
+  <p class="subtitle">Math Foundations · Code-First JavaScript ML · Visual Architecture · Python &amp; PyTorch Mechanics<br>
   Check off topics as you complete them — progress is saved in your browser.</p>
 
   <div class="progress-wrap" id="progressWrap">
@@ -346,7 +346,7 @@
       <div class="progress-bar-fill" id="progressFill"></div>
     </div>
     <div class="progress-meta">
-      <span id="progressCount">0 of 16 completed</span>
+      <span id="progressCount">0 of 17 completed</span>
       <span id="progressHint">Mark topics below as you finish them</span>
     </div>
     <div class="progress-actions">
@@ -356,15 +356,16 @@
 
   <div class="method">
     <h2 style="margin-top:0">Learning Methodology</h2>
-    <p style="font-size:0.9rem;margin-bottom:10px">To build deep, lasting intuition without treating PyTorch as a black box, follow this four-stage progression:</p>
+    <p style="font-size:0.9rem;margin-bottom:10px">To build deep, lasting intuition without treating AI as a black box, follow this four-stage progression:</p>
     <ol>
-      <li><strong>Geometric Intuition</strong> — Understand matrices and calculus as physical space transformations.</li>
-      <li><strong>"By Hand" Calculation</strong> — Trace matrix multiplications and activation passes manually on paper.</li>
-      <li><strong>Visual Architecture</strong> — Study color-coded diagrams of Self-Attention and Transformer blocks.</li>
-      <li><strong>Line-by-Line Mechanics</strong> — Build Micrograd and GPT from scratch in raw Python.</li>
+      <li><strong>Geometric Intuition &amp; Math</strong> — Understand matrices, statistics, and calculus as physical space transformations.</li>
+      <li><strong>Code-First Intuition (JavaScript)</strong> — Build basic neural networks and ML algorithms from scratch visually in the browser without frameworks.</li>
+      <li><strong>Visual Architecture</strong> — Study color-coded diagrams of Deep Learning, Self-Attention, and Transformers.</li>
+      <li><strong>Line-by-Line Mechanics (Python)</strong> — Build autograd engines and complete GPT models from scratch in raw Python and PyTorch.</li>
     </ol>
   </div>
 
+  <!-- ═══════════ PHASE 1 ═══════════ -->
   <div class="phase p1">
     Phase 1 · Visual &amp; Geometric Math Foundations
     <span>Zero Code</span>
@@ -375,7 +376,7 @@
     <div class="card-body">
       <h3>3Blue1Brown: Essence of Linear Algebra</h3>
       <div class="meta">By Grant Sanderson · YouTube Series (16 videos)</div>
-      <p>Shows how matrices transform, rotate, and stretch 2D/3D space. Teaches vectors, dot products, determinants, eigenvectors visually. The single best free linear-algebra intuition resource.</p>
+      <p>Shows how matrices transform, rotate, and stretch 2D/3D space. Teaches vectors, dot products, determinants, and eigenvectors visually. The single best free linear-algebra intuition resource.</p>
       <div class="links">
         <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank" rel="noopener">Official playlist →</a>
         <a href="https://www.youtube.com/watch?v=fNk_zzaMoSs" target="_blank" rel="noopener">Start: Vectors (Ch.1) →</a>
@@ -396,77 +397,114 @@
     </div>
   </div>
 
+  <div class="card" data-id="p1-jon-krohn">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-jon-krohn" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Dr. Jon Krohn: Machine Learning Foundations</h3>
+      <div class="meta">Comprehensive Math for AI — Hub &amp; 3-Part Curriculum</div>
+      <p>A complete series bridging visual math to machine learning execution in Python. Start at the main hub, then progress through the three core math pillars.</p>
+      <div class="links">
+        <a href="https://www.jonkrohn.com/courses" target="_blank" rel="noopener">Main Course Hub →</a>
+        <a href="https://www.youtube.com/playlist?list=PLRDl2inPrWQW1QSWhBU0ki-jq_uElkh2a" target="_blank" rel="noopener">1. Linear Algebra →</a>
+        <a href="https://www.youtube.com/playlist?list=PLRDl2inPrWQVu2OvnTvtkRpJ-wz-URMJx" target="_blank" rel="noopener">2. Calculus Playlist →</a>
+        <a href="https://www.youtube.com/playlist?list=PLRDl2inPrWQWwJ1mh4tCUxlLfZ76C1zge" target="_blank" rel="noopener">3. Probability &amp; Stats →</a>
+      </div>
+    </div>
+  </div>
+
   <div class="card" data-id="p1-statquest">
     <div class="check-wrap"><input type="checkbox" id="cb-p1-statquest" aria-label="Mark complete"></div>
     <div class="card-body">
       <h3>StatQuest with Josh Starmer</h3>
       <div class="meta">YouTube Channel · Statistics &amp; ML foundations</div>
-      <p>Step-by-step visual breakdowns of probability, distributions, Maximum Likelihood Estimation, and fundamental ML algorithms.</p>
+      <p>Step-by-step visual breakdowns of probability, cross-entropy, Maximum Likelihood Estimation, and foundational ML algorithms.</p>
       <div class="links">
         <a href="https://www.youtube.com/@statquest" target="_blank" rel="noopener">Channel →</a>
-        <a href="https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" target="_blank" rel="noopener">ML playlist →</a>
+        <a href="https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" target="_blank" rel="noopener">StatQuest ML Playlist →</a>
       </div>
     </div>
   </div>
 
-  <div class="card" data-id="p1-maths4ml">
-    <div class="check-wrap"><input type="checkbox" id="cb-p1-maths4ml" aria-label="Mark complete"></div>
+  <div class="card" data-id="p1-mml-book">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-mml-book" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>Maths4ML (Interactive Platform)</h3>
-      <div class="meta">Free &amp; Open · Interactive web platform</div>
-      <p>Interactive plotting and step-by-step worked math derivations bridging raw equations with ML algorithms (PCA, Gradient Descent, Transformers).</p>
+      <h3>Mathematics for Machine Learning (MML)</h3>
+      <div class="meta">By Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong</div>
+      <p>The gold-standard open-access textbook bridging math theory with machine learning concepts.</p>
       <div class="links">
-        <a href="https://maths4ml.com/" target="_blank" rel="noopener">Open Maths4ML →</a>
+        <a href="https://mml-book.github.io/book/mml-book.pdf" target="_blank" rel="noopener">Download Free PDF →</a>
+        <a href="https://mml-book.github.io/" target="_blank" rel="noopener">Companion site →</a>
       </div>
     </div>
   </div>
 
+  <div class="card" data-id="p1-matrix-calculus">
+    <div class="check-wrap"><input type="checkbox" id="cb-p1-matrix-calculus" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>The Matrix Calculus You Need for Deep Learning</h3>
+      <div class="meta">By Terence Parr and Jeremy Howard (fast.ai)</div>
+      <p>A highly readable paper explaining multivariate vector derivatives (Jacobians and Hessians) required for understanding backpropagation.</p>
+      <div class="links">
+        <a href="https://explained.ai/matrix-calculus/index.html" target="_blank" rel="noopener">Read on explained.ai →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PHASE 2 ═══════════ -->
   <div class="phase p2">
-    Phase 2 · "By Hand" Step-by-Step Practice
-    <span>Arithmetic Grids</span>
+    Phase 2 · Code-First Intuition (Vanilla JavaScript)
+    <span>No Libraries</span>
   </div>
 
-  <div class="card" data-id="p2-ai-by-hand">
-    <div class="check-wrap"><input type="checkbox" id="cb-p2-ai-by-hand" aria-label="Mark complete"></div>
+  <div class="card" data-id="p2-ml-course">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-ml-course" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>AI by Hand ✍️ — Calculating AI by Hand series (Prof. Tom Yeh)</h3>
-      <div class="meta">Start here: Matrix Multiplication → MLP → Backprop · Free walkthroughs + paid workbooks</div>
-      <p>Prof. Tom Yeh (CU Boulder) created a unique system of hand-drawn arithmetic grids so you can trace every matrix multiply, activation, and gradient on paper. This is the core of Phase 2.</p>
+      <h3>Machine Learning Course (From Scratch)</h3>
+      <div class="meta">By Prof. Radu Mariescu-Istodor · Visual Algorithms &amp; Fundamentals</div>
+      <p>Build K-Nearest Neighbors, Decision Trees, and perceptrons from the ground up, starting with a JavaScript drawing app — all without libraries.</p>
       <div class="links">
-        <a href="https://www.byhand.ai/p/library-series-math-calc" target="_blank" rel="noopener">Free calculation library (start here) →</a>
-        <a href="https://www.byhand.ai/p/4-can-you-multiply-these-matrices" target="_blank" rel="noopener">1. Matrix Multiplication by Hand →</a>
-        <a href="https://www.byhand.ai/" target="_blank" rel="noopener">Main site →</a>
-        <a href="https://www.youtube.com/@ai-by-hand" target="_blank" rel="noopener">YouTube channel →</a>
-        <a href="https://www.youtube.com/playlist?list=PL0cq-CiC5QhuyQQ-Qi5Qr5e5Rbzrn7beY" target="_blank" rel="noopener">Workbook playlist →</a>
+        <a href="https://www.youtube.com/playlist?list=PLB0Tybl0UNfYe9aJXfWw-Dw_4VnFrqRC4" target="_blank" rel="noopener">Watch Playlist →</a>
       </div>
     </div>
   </div>
 
-  <div class="card" data-id="p2-pencil-paper">
-    <div class="check-wrap"><input type="checkbox" id="cb-p2-pencil-paper" aria-label="Mark complete"></div>
+  <div class="card" data-id="p2-self-driving-p1">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-self-driving-p1" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>Free Alternative — Pencil-and-Paper Neural Networks</h3>
-      <div class="meta">Undergraduate lab exercise (open access)</div>
-      <p>A published laboratory exercise in which students construct, train and test simple artificial neural networks entirely by hand on paper. Completely free PDF.</p>
+      <h3>Self-Driving Car with JavaScript (Phase 1)</h3>
+      <div class="meta">Applied Neural Networks · No libraries</div>
+      <p>Build a self-driving car system from the ground up. Implement driving mechanics, sensors, and train a neural network visually.</p>
       <div class="links">
-        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4640478/" target="_blank" rel="noopener">Open-access paper + exercises →</a>
+        <a href="https://www.youtube.com/playlist?list=PLB0Tybl0UNfYoJE7ZwsBQoDIG4YN9ptyY" target="_blank" rel="noopener">Phase 1 / Full Course Playlist →</a>
       </div>
     </div>
   </div>
 
-  <div class="card" data-id="p2-wandb-math4ml">
-    <div class="check-wrap"><input type="checkbox" id="cb-p2-wandb-math4ml" aria-label="Mark complete"></div>
+  <div class="card" data-id="p2-self-driving-p2">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-self-driving-p2" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>Weights &amp; Biases Math4ML Exercises</h3>
-      <div class="meta">GitHub + Colab · Linear Algebra focused</div>
-      <p>Interactive Jupyter notebooks with auto-grader for linear-algebra exercises oriented toward ML. Excellent free practice complement.</p>
+      <h3>Self-Driving Car with JavaScript (Phase 2 – Virtual World)</h3>
+      <div class="meta">Genetic Algorithms &amp; 3D Web Environment</div>
+      <p>Expand the car into a virtual world, applying neuroevolution and complex environmental variables.</p>
       <div class="links">
-        <a href="https://github.com/wandb/edu/tree/main/math-for-ml" target="_blank" rel="noopener">GitHub repo →</a>
-        <a href="https://www.youtube.com/watch?v=99QfjbX6uxg" target="_blank" rel="noopener">Intro video →</a>
+        <a href="https://www.youtube.com/playlist?list=PLB0Tybl0UNfZtY5IQl1aNwcoOPJNtnPEO" target="_blank" rel="noopener">Phase 2 Playlist →</a>
       </div>
     </div>
   </div>
 
+  <div class="card" data-id="p2-understanding-ai">
+    <div class="check-wrap"><input type="checkbox" id="cb-p2-understanding-ai" aria-label="Mark complete"></div>
+    <div class="card-body">
+      <h3>Understanding AI (Phase 3 – 15-Part Course)</h3>
+      <div class="meta">Deepen the fundamentals of Neural Networks and dimensions</div>
+      <p>Dive into neural networks, extra dimensions, procedural sounds, and camera inputs using raw JavaScript logic.</p>
+      <div class="links">
+        <a href="https://www.youtube.com/playlist?list=PLB0Tybl0UNfYbL1vDNrfHoYOKf1Sn0A81" target="_blank" rel="noopener">Phase 3 Playlist →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PHASE 3 ═══════════ -->
   <div class="phase p3">
     Phase 3 · Visual Neural Networks &amp; Transformers
     <span>Visual Mechanics</span>
@@ -477,7 +515,7 @@
     <div class="card-body">
       <h3>3Blue1Brown: Neural Networks (Deep Learning series)</h3>
       <div class="meta">YouTube Series · Chapters 1–7</div>
-      <p>Animated visualization of multi-layer perceptrons, cost functions, gradient descent, backpropagation, and later chapters on Transformers and Attention.</p>
+      <p>Animated visualization of multi-layer perceptrons, cost functions, gradient descent, backpropagation, and Transformers.</p>
       <div class="links">
         <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank" rel="noopener">Full playlist →</a>
         <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">Start: But what is a neural network? →</a>
@@ -490,7 +528,7 @@
     <div class="card-body">
       <h3>TensorFlow Playground</h3>
       <div class="meta">Browser sandbox · No code required</div>
-      <p>Train neural networks directly in your browser. Adjust hidden layers, learning rates and activation functions while observing decision boundaries update live.</p>
+      <p>Train neural networks directly in your browser. Adjust hidden layers, learning rates, and activation functions while observing decision boundaries update live.</p>
       <div class="links">
         <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">Open Playground →</a>
       </div>
@@ -510,6 +548,7 @@
     </div>
   </div>
 
+  <!-- ═══════════ PHASE 4 ═══════════ -->
   <div class="phase p4">
     Phase 4 · Code Mechanics: Karpathy's "Zero to Hero"
     <span>Python &amp; PyTorch</span>
@@ -518,9 +557,9 @@
   <div class="card" data-id="p4-karpathy-series">
     <div class="check-wrap"><input type="checkbox" id="cb-p4-karpathy-series" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>Andrej Karpathy: Neural Networks — Zero to Hero (full series overview)</h3>
+      <h3>Andrej Karpathy: Neural Networks — Zero to Hero</h3>
       <div class="meta">Former Director of AI at Tesla &amp; OpenAI founding team · Full free course</div>
-      <p>The definitive line-by-line series. You will build a scalar autograd engine, character-level language models, and a complete GPT from scratch.</p>
+      <p>The definitive line-by-line series. Build autograd engines, language models, and GPT from scratch.</p>
       <div class="links">
         <a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank" rel="noopener">Official playlist →</a>
         <a href="https://github.com/karpathy/nn-zero-to-hero" target="_blank" rel="noopener">GitHub notebooks →</a>
@@ -533,10 +572,10 @@
     <div class="card-body">
       <h3>Lecture 1: Micrograd (Line-by-Line Autograd)</h3>
       <div class="meta">KEY FOUNDATIONAL MILESTONE · Pure Python</div>
-      <p>Micrograd is Karpathy’s scalar autograd engine (~100–150 lines of pure Python). Dissecting it bridges the paper math from “AI by Hand” directly into production software engines.</p>
+      <p>Dissecting Micrograd (~150 lines of pure Python) bridges math directly into production software engines.</p>
       <div class="links">
-        <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener">Watch Lecture 1 (2h 25m) →</a>
-        <a href="https://github.com/karpathy/micrograd" target="_blank" rel="noopener">micrograd GitHub →</a>
+        <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener">Watch Lecture 1 →</a>
+        <a href="https://github.com/karpathy/micrograd" target="_blank" rel="noopener">Micrograd GitHub →</a>
       </div>
       <div class="core">
         <strong>The 5 core mechanics dissected line-by-line:</strong>
@@ -558,7 +597,7 @@
       <div class="meta">Build character-level language models</div>
       <p>Progress through Bigrams → Multilayer Perceptrons (MLP) → Batch Normalization → WaveNet-style models.</p>
       <div class="links">
-        <a href="https://www.youtube.com/watch?v=PaCmpygFfXo&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=2" target="_blank" rel="noopener">Start Lecture 2 →</a>
+        <a href="https://www.youtube.com/watch?v=PaCmpygFfXo&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=2" target="_blank" rel="noopener">Start Makemore Series (Lecture 2) →</a>
       </div>
     </div>
   </div>
@@ -566,25 +605,13 @@
   <div class="card" data-id="p4-build-gpt">
     <div class="check-wrap"><input type="checkbox" id="cb-p4-build-gpt" aria-label="Mark complete"></div>
     <div class="card-body">
-      <h3>Lecture 6: Let’s build GPT</h3>
-      <div class="meta">Transformer Architecture</div>
-      <p>Construct a complete generative Transformer model matching the original GPT-2 paper from scratch in PyTorch.</p>
+      <h3>Lecture 6: Let’s build GPT &amp; NanoGPT</h3>
+      <div class="meta">Transformer Architecture &amp; Optimization</div>
+      <p>Construct a complete generative Transformer matching the original GPT-2 paper from scratch in PyTorch.</p>
       <div class="links">
-        <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener">Watch Lecture 6 →</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-id="p4-tokenizer-nanogpt">
-    <div class="check-wrap"><input type="checkbox" id="cb-p4-tokenizer-nanogpt" aria-label="Mark complete"></div>
-    <div class="card-body">
-      <h3>Tokenizer + NanoGPT / GPT-2 reproduction</h3>
-      <div class="meta">Optimization &amp; production considerations</div>
-      <p>Learn tokenization (tiktoken / minBPE) and high-performance PyTorch optimizations. Also covers reproducing GPT-2 (124M).</p>
-      <div class="links">
+        <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener">Watch Let’s build GPT →</a>
+        <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener">NanoGPT GitHub →</a>
         <a href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank" rel="noopener">Let’s build the GPT Tokenizer →</a>
-        <a href="https://www.youtube.com/watch?v=l8pRSuU81PU" target="_blank" rel="noopener">Reproduce GPT-2 (124M) →</a>
-        <a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener">nanoGPT GitHub →</a>
       </div>
     </div>
   </div>
@@ -592,16 +619,15 @@
   <h2>Recommended Study Order (with rough time estimates)</h2>
   <div class="order">
     <ol>
-      <li>3Blue1Brown Linear Algebra (Essence) — ~3–4 h</li>
-      <li>3Blue1Brown Calculus (Essence) — ~3 h</li>
-      <li>StatQuest core ML/stats videos — 4–6 h</li>
-      <li>AI by Hand: Matrix Multiplication → MLP → Backprop walkthroughs — 6–10 h of paper work</li>
-      <li>3Blue1Brown Neural Networks chapters 1–4 — ~1.5 h</li>
-      <li>TensorFlow Playground experimentation — 1–2 h</li>
-      <li>Jay Alammar Illustrated Transformer — 1–2 h (read slowly, redraw diagrams)</li>
-      <li>Karpathy Lecture 1 (Micrograd) — watch + re-implement (8–12 h total)</li>
-      <li>Makemore series (Lectures 2–5) — 10–15 h</li>
-      <li>Let’s build GPT + Tokenizer + NanoGPT — 15–25 h</li>
+      <li>3Blue1Brown Math Essence Series — ~10–14 h</li>
+      <li>Jon Krohn ML Foundations &amp; StatQuest — ~15–20 h</li>
+      <li>Math Papers &amp; Deisenroth Textbook — Reference as needed</li>
+      <li>Prof. Radu JavaScript AI/ML Series — ~15–20 h (code along visually)</li>
+      <li>3Blue1Brown Neural Networks — ~2 h</li>
+      <li>TensorFlow Playground &amp; Jay Alammar — ~3–4 h</li>
+      <li>Karpathy Lecture 1 (Micrograd) — ~8–12 h (watch + re-implement from scratch)</li>
+      <li>Karpathy Makemore series (Lec 2–5) — ~10–15 h</li>
+      <li>Karpathy Let’s build GPT + Tokenizer — ~15–25 h</li>
     </ol>
   </div>
 
@@ -636,14 +662,13 @@
   </div>
 
   <footer>
-    All primary resources listed are free. Paid workbooks from Prof. Tom Yeh are optional upgrades.<br>
-    Progress is stored locally in your browser (localStorage).
+    All primary resources listed are free. Progress is stored locally in your browser (localStorage).
   </footer>
 </div>
 
 <script>
 (function () {
-  const STORAGE_KEY = 'zeroToHeroAI_progress_v1';
+  const STORAGE_KEY = 'zeroToHeroAI_progress_v2';
   const checkboxes = document.querySelectorAll('.card input[type="checkbox"]');
   const total = checkboxes.length;
 
@@ -712,7 +737,6 @@
   });
 
   // ── Form → Google Sheet (or local fallback) ──
-  // PASTE your Google Apps Script Web App URL here:
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBcr_awZVpiWxhOyKxF-3bHP8VSQaGFcshoW9wlpqaZKHRLHNXvYd_xo-o-2O4cCTL/exec';
 
   const form = document.getElementById('proposeForm');
@@ -738,14 +762,12 @@
 
     const payload = { name, email, details };
 
-    // Always keep a local copy as backup
     try {
       const prev = JSON.parse(localStorage.getItem('zeroToHeroAI_proposals') || '[]');
       prev.push({ ...payload, at: new Date().toISOString() });
       localStorage.setItem('zeroToHeroAI_proposals', JSON.stringify(prev.slice(-30)));
     } catch (err) {}
 
-    // If no Google URL is set, just show success (local only)
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR')) {
       form.reset();
       successEl.classList.add('visible');
@@ -758,11 +780,10 @@
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors', // Apps Script web apps often need this for simple POST
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload)
       });
-      // With no-cors we cannot read the response; assume success if no throw
       form.reset();
       successEl.classList.add('visible');
       setTimeout(() => successEl.classList.remove('visible'), 5000);
